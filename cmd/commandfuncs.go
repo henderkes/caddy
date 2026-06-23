@@ -279,7 +279,8 @@ func cmdRun(fl Flags) (int, error) {
 	logger = caddy.Log()
 	defaultLogger = nil //nolint:ineffassign,wastedassign
 	logBuffer = nil     //nolint:wastedassign,ineffassign
-	logger.Info("serving initial configuration")
+	_, version := caddy.Version()
+	logger.Info("serving initial configuration", zap.String("version", version))
 
 	// if we are to report to another process the successful start
 	// of the server, do so now by echoing back contents of stdin
